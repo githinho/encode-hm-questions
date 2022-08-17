@@ -36,11 +36,11 @@ debugger step through the function and inspect the memory.
 (debugging this in Remix might help here)
 2. Could the answer to Q1 allow an optimisation? Yes, skip setting the free memory pointer at the start (first 3 commands and start from CALLVALUE).
 3. Can you trigger a revert in the init code in Remix? Yes, by sending some ether.
-4. Can you think of a situation where the opcode EXTCODECOPY is used? For setting contract owner.
+4. Can you think of a situation where the opcode EXTCODECOPY is used? It is used in delegate calls and proxy contracts and upgradable contracts.
 
 ## Homework 6
 
-See repo: [https://github.com/githinho/encode-hm6](https://github.com/githinho/encode-hm6).
+See repo: [https://github.com/githinho/encode-extropy-code](https://github.com/githinho/encode-extropy-code).
 
 ## Homework 7
 
@@ -86,3 +86,30 @@ The function returns the offset in storage to get allowance for a given account 
 - Last command returns calculated hash of values from memory address 0x0 to 0x40, two values that were stored in steps before.
 
 For more info check [ERC20 implementation in Yul](https://docs.soliditylang.org/en/v0.8.15/yul.html#complete-erc20-example).
+
+## Homework 8
+
+See repo: [https://github.com/githinho/encode-extropy-code/tree/main/gas](https://github.com/githinho/encode-extropy-code/tree/main/gas).
+
+## Homework 9
+
+1. Why are negative numbers more expensive to store than positive numbers? Because you need to have 1 bit for storing positive/negative prefix.
+2. Test the following statements in Remix, which is cheaper and why? Assume that the demoninator can never be zero. The second version is cheaper because assembly command doesn't have additional checks like overflows and underflows.
+
+```solidity
+result = numerator / demoninator;
+```
+
+```solidity
+assembly {
+    result := div(numerator, demoninator)
+}
+```
+
+## Homework 12
+
+See repo: [https://github.com/githinho/encode-extropy-code/tree/main/defiFoundry](https://github.com/githinho/encode-extropy-code/tree/main/defiFoundry).
+
+## Homework 13
+
+See repo: [https://github.com/githinho/encode-extropy-code/tree/main/audit/homework13](https://github.com/githinho/encode-extropy-code/tree/main/audit/homework13)
